@@ -1,0 +1,12 @@
+.headerMain {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.todayText {
+  font-size: 24px;
+  font-weight: 800;
+  margin-right: 20px;
+}

@@ -1,0 +1,24 @@
+.searchBar {
+  display: flex;
+  flex: 1;
+  border-radius: 20px;
+  border: 1px solid #7c7c7c;
+  margin: 10px 0;
+  margin-right: 20px;
+  min-width: 300px;
+}
+
+.mainInput {
+  flex: 1;
+  border-width: 2px;
+  border-color: red;
+  background-color: transparent;
+  color: black;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+.searchIcon {
+  padding: 10px;
+  color: #646cff;
+}
