@@ -1,7 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { useCategoryContex } from "../../context/categoryContext";
-import { debounce } from "../../utils/debounceUtil"; // Assuming you have a debounce utility
+import { debounce } from "../../utils/debounceUtil";
 import "./searchBar.css";
 
 export const SearchBar = () => {
