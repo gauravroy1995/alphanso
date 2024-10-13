@@ -1,0 +1,72 @@
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.eachList {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(246, 246, 246);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+}
+
+.eachList.active {
+  background-color: rgb(217, 243, 217);
+  border-color: rgb(147, 239, 147);
+}
+
+.eachList.exit {
+  animation: slideOut 0.5s forwards;
+}
+
+.listWrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.checkCircle {
+  color: grey;
+  transition: color 0.3s ease;
+}
+
+.check {
+  color: green;
+  size: 40px;
+  transition: color 0.3s ease;
+}
+
+.leftItem {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.delete {
+  color: rgb(166, 163, 163);
+  padding-left: 30px;
+}
+
+.checkCircle,
+.check,
+.delete {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+}

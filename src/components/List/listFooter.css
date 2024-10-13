@@ -1,0 +1,17 @@
+.footerInput {
+  outline: none;
+  border: 1px solid #bcbbbb;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+}
+
+.addButton {
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -1,17 +1,19 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Header } from "./components/Header/Header";
+import { ListWrapper } from "./components/List/ListWrapper";
+import { TodoContextProvider } from "./context/todoContext";
+import { CategoryContexProvider } from "./context/categoryContext";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <Header />
-      </div>
+      <CategoryContexProvider>
+        <TodoContextProvider>
+          <Header />
+          <ListWrapper />
+        </TodoContextProvider>
+      </CategoryContexProvider>
     </>
   );
 }

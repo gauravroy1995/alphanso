@@ -1,33 +1,38 @@
-import { useState } from "react";
+import { Category, useCategoryContex } from "../../context/categoryContext";
 import "./filters.css";
 export const Filters = () => {
-  const [selectedFilter, setSelectedFilter] = useState("All");
+  const context = useCategoryContex();
 
-  const handleFilterClick = (filter) => {
-    setSelectedFilter(filter);
+  const { categorySelected, updateCategory } = context || {};
+
+  const handleFilterClick = (filter: Category) => {
+    if (!updateCategory) return;
+    updateCategory(filter);
   };
 
   return (
     <div className="filters">
       <button
-        className={`filterButton ${selectedFilter === "All" ? "active" : ""}`}
-        onClick={() => handleFilterClick("All")}
+        className={`filterButton ${
+          categorySelected === Category.All ? "active" : ""
+        }`}
+        onClick={() => handleFilterClick(Category.All)}
       >
         All
       </button>
       <button
         className={`filterButton ${
-          selectedFilter === "Active" ? "active" : ""
+          categorySelected === Category.Active ? "active" : ""
         }`}
-        onClick={() => handleFilterClick("Active")}
+        onClick={() => handleFilterClick(Category.Active)}
       >
         Active
       </button>
       <button
         className={`filterButton ${
-          selectedFilter === "Completed" ? "active" : ""
+          categorySelected === Category.Completed ? "active" : ""
         }`}
-        onClick={() => handleFilterClick("Completed")}
+        onClick={() => handleFilterClick(Category.Completed)}
       >
         Completed
       </button>
