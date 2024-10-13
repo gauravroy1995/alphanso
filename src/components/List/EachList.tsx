@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { FaRegCircle } from "react-icons/fa6";
-import { Todo, useTodoContext } from "../../context/todoContext";
 import { IoMdClose } from "react-icons/io";
-import React, { useState } from "react";
+import { Todo, useTodoContext } from "../../context/todoContext";
 import "./list.css";
 
 type EachListProps = {
@@ -28,6 +28,7 @@ export const EachList = (props: EachListProps) => {
   const onDeleteHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
     setIsExiting(true);
+
     setTimeout(() => {
       if (deleteTodo) {
         deleteTodo(id);
@@ -36,22 +37,24 @@ export const EachList = (props: EachListProps) => {
   };
 
   return (
-    <div
-      className={`eachList ${completed ? "active" : ""} ${
-        isExiting ? "exit" : ""
-      }`}
-      key={id}
-      onClick={updateTodoHandler}
-    >
-      <div className="leftItem">
-        <>
-          {!completed && <FaRegCircle className="checkCircle" size="23px" />}
-          {completed && <CiCircleCheck className="check" size="25px" />}
-        </>
-        <p className="itemText">{title}</p>
-      </div>
+    <>
+      <div
+        className={`eachList ${completed ? "active" : ""} ${
+          isExiting ? "exit" : ""
+        }`}
+        key={id}
+        onClick={updateTodoHandler}
+      >
+        <div className="leftItem">
+          <>
+            {!completed && <FaRegCircle className="checkCircle" size="23px" />}
+            {completed && <CiCircleCheck className="check" size="25px" />}
+          </>
+          <p className="itemText">{title}</p>
+        </div>
 
-      <IoMdClose onClick={onDeleteHandler} className="delete" size="23px" />
-    </div>
+        <IoMdClose onClick={onDeleteHandler} className="delete" size="23px" />
+      </div>
+    </>
   );
 };

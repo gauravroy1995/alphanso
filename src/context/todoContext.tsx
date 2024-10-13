@@ -1,3 +1,4 @@
+import { Snackbar } from "@mui/material";
 import React, { ReactNode, useEffect } from "react";
 
 export type Todo = {
@@ -21,6 +22,10 @@ export const TodoContextProvider = ({ children }: { children: ReactNode }) => {
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
 
+  const [recentlyDeleted, setRecentlyDeleted] = React.useState("");
+
+  const [snackbarState, setSnackbarState] = React.useState(false);
+
   const addTodo = (title: string) => {
     setTodos([
       ...todos,
@@ -38,7 +43,7 @@ export const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
   const updateTodo = (id: number) => {
     setTodos(
-      todos.map((todo) => {
+      todos.map((todo: Todo) => {
         if (todo.id === id) {
           return {
             ...todo,
@@ -51,12 +56,38 @@ export const TodoContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const deleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    const recentlyDeletedT = todos.find((todo: Todo) => todo.id === id)?.title;
+    setRecentlyDeleted(recentlyDeletedT || "");
+    setSnackbarState(true);
+    setTodos(todos.filter((todo: Todo) => todo.id !== id));
   };
 
+  const onUndo = () => {
+    addTodo(recentlyDeleted);
+    setSnackbarState(false);
+    setRecentlyDeleted("");
+  };
+
+  const action = <button onClick={onUndo}>UNDO</button>;
+
   return (
-    <TodoContext.Provider value={{ todos, addTodo, deleteTodo, updateTodo }}>
+    <TodoContext.Provider
+      value={{
+        todos,
+        addTodo,
+        deleteTodo,
+        updateTodo,
+      }}
+    >
       {children}
+      <Snackbar
+        open={snackbarState}
+        message="Task deleted"
+        action={action}
+        autoHideDuration={3000}
+        onClose={() => setSnackbarState(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      />
     </TodoContext.Provider>
   );
 };
